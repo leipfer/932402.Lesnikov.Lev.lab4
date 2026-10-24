@@ -56,7 +56,12 @@ function parseForecastsInput(input) {
     .map(Number)
     .filter((num) => !isNaN(num) && num >= 0 && num <= 100);
 
-  return parsed.length > 0 ? parsed : defaultForecasts;
+  if (parsed.length < 5 || parsed.length > 7) {
+    alert('Ошибка: необходимо ввести от 5 до 7 чисел от 0 до 100. Будут использованы данные по умолчанию.');
+    return defaultForecasts;
+  }
+
+  return parsed;
 }
 
 const userName = prompt('Введите ваше имя:');
